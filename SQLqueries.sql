@@ -77,3 +77,11 @@ FROM Poem
 JOIN Author ON Poem.AuthorId = Author.Id
 JOIN Grade ON Author.GradeId = Grade.Id
 GROUP BY Grade.Id, Grade.Name
+
+--13. How many authors are in each grade?
+SELECT
+COUNT(Author.Id) AS NumAuthors,
+Grade.Name
+FROM Author
+JOIN Grade ON Author.GradeId = Grade.Id
+GROUP BY Grade.Name;
