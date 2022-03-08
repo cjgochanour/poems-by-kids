@@ -39,7 +39,7 @@ JOIN Gender ON Author.GenderId = Gender.Id
 --7. What is the total number of words in all poems in the database?
 
 SELECT
-COUNT(Poem.WordCount) AS WordCount
+SUM(Poem.WordCount) AS WordCount
 FROM Poem
 
 --8. Which poem has the fewest characters?
@@ -68,3 +68,12 @@ FROM Poem
 JOIN Author ON Poem.AuthorId = Author.Id
 JOIN Grade ON Author.GradeId = Author.GradeId
 WHERE Grade.Name = '4th Grade';
+
+--12. How many poems are there per grade?
+SELECT
+COUNT(Poem.Id) AS NumPoems,
+Grade.Name
+FROM Poem
+JOIN Author ON Poem.AuthorId = Author.Id
+JOIN Grade ON Author.GradeId = Grade.Id
+GROUP BY Grade.Id, Grade.Name
