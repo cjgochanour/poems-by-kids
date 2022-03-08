@@ -123,3 +123,17 @@ FROM PoemEmotion
 JOIN Emotion ON PoemEmotion.EmotionId = Emotion.Id
 GROUP BY Emotion.Id, Emotion.Name
 ORDER BY Count(PoemEmotion.Id)
+
+--19. Which grade has the largest number of poems with an emotion of joy?
+SELECT TOP 1
+COUNT(PoemEmotion.PoemId) AS NumPoems,
+Emotion.Name AS 'Emotion',
+Grade.Name AS 'Grade'
+FROM PoemEmotion
+JOIN Emotion ON PoemEmotion.EmotionId = Emotion.Id
+JOIN Poem ON PoemEmotion.PoemId = Poem.Id
+JOIN Author ON Poem.AuthorId = Author.Id
+JOIN Grade ON Author.GradeId = Grade.Id
+GROUP BY Emotion.Name, Grade.Name
+HAVING Emotion.Name = 'Joy'
+ORDER BY COUNT(PoemEmotion.PoemId) DESC
