@@ -107,3 +107,10 @@ COUNT(PoemEmotion.PoemId) AS NumPoems
 FROM PoemEmotion
 JOIN Emotion ON PoemEmotion.EmotionId = Emotion.Id
 WHERE Emotion.Name = 'Sadness'
+
+--17. How many poems are not associated with any emotion?
+SELECT
+COUNT(Poem.Id) AS NumPoems
+FROM Poem
+LEFT JOIN PoemEmotion ON PoemEmotion.PoemId = Poem.Id
+WHERE PoemEmotion.Id IS NULL
