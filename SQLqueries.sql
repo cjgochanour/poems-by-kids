@@ -49,14 +49,22 @@ ORDER BY Poem.CharCount
 
 --9. How many authors are in the third grade?
 SELECT 
-COUNT(Author.Id)
+COUNT(Author.Id) AS NumAuthors
 FROM Author
 JOIN Grade ON Author.GradeId = Grade.Id
 WHERE Grade.Name = '3rd Grade';
 
 --10. How many total authors are in the first through third grades?
 SELECT
-COUNT(Author.ID)
+COUNT(Author.ID) AS NumAuthors
 FROM Author
 JOIN Grade ON Author.GradeId = Grade.Id
 WHERE Grade.Name = '1st Grade' OR Grade.Name = '2nd Grade' OR Grade.Name = '3rd Grade'
+
+--11. What is the total number of poems written by fourth graders?
+SELECT
+COUNT(Poem.Id) AS NumPoems
+FROM Poem
+JOIN Author ON Poem.AuthorId = Author.Id
+JOIN Grade ON Author.GradeId = Author.GradeId
+WHERE Grade.Name = '4th Grade';
