@@ -54,3 +54,9 @@ FROM Author
 JOIN Grade ON Author.GradeId = Grade.Id
 WHERE Grade.Name = '3rd Grade';
 
+--10. How many total authors are in the first through third grades?
+SELECT
+COUNT(Author.ID)
+FROM Author
+JOIN Grade ON Author.GradeId = Grade.Id
+WHERE Grade.Name = '1st Grade' OR Grade.Name = '2nd Grade' OR Grade.Name = '3rd Grade'
