@@ -95,8 +95,15 @@ ORDER BY Poem.WordCount DESC
 --15. Which author(s) have the most poems? 
 SELECT TOP 10
 Author.Name,
-Count(Poem.AuthorId) AS NumPoems
+COUNT(Poem.AuthorId) AS NumPoems
 FROM Poem
 JOIN Author ON Poem.AuthorId = Author.Id
 GROUP BY Author.Id, Author.Name
 ORDER BY COUNT(Poem.AuthorId) DESC
+
+--16. How many poems have an emotion of sadness?
+SELECT
+COUNT(PoemEmotion.PoemId) AS NumPoems
+FROM PoemEmotion
+JOIN Emotion ON PoemEmotion.EmotionId = Emotion.Id
+WHERE Emotion.Name = 'Sadness'
