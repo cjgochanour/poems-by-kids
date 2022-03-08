@@ -91,3 +91,12 @@ SELECT TOP 1
 Poem.Title
 FROM Poem
 ORDER BY Poem.WordCount DESC
+
+--15. Which author(s) have the most poems? 
+SELECT TOP 10
+Author.Name,
+Count(Poem.AuthorId) AS NumPoems
+FROM Poem
+JOIN Author ON Poem.AuthorId = Author.Id
+GROUP BY Author.Id, Author.Name
+ORDER BY COUNT(Poem.AuthorId) DESC
