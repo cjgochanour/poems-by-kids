@@ -114,3 +114,12 @@ COUNT(Poem.Id) AS NumPoems
 FROM Poem
 LEFT JOIN PoemEmotion ON PoemEmotion.PoemId = Poem.Id
 WHERE PoemEmotion.Id IS NULL
+
+--18. Which emotion is associated with the least number of poems?
+SELECT TOP 1
+COUNT(PoemEmotion.Id) AS NumPoems,
+Emotion.Name
+FROM PoemEmotion
+JOIN Emotion ON PoemEmotion.EmotionId = Emotion.Id
+GROUP BY Emotion.Id, Emotion.Name
+ORDER BY Count(PoemEmotion.Id)
