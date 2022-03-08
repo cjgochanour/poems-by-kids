@@ -137,3 +137,17 @@ JOIN Grade ON Author.GradeId = Grade.Id
 GROUP BY Emotion.Name, Grade.Name
 HAVING Emotion.Name = 'Joy'
 ORDER BY COUNT(PoemEmotion.PoemId) DESC
+
+--20. Which gender has the least number of poems with an emotion of fear?
+SELECT TOP 1
+COUNT(PoemEmotion.PoemId) AS NumPoems,
+Emotion.Name AS 'Emotion',
+Gender.Name AS 'Gender'
+FROM PoemEmotion
+JOIN Emotion ON PoemEmotion.EmotionId = Emotion.Id
+JOIN Poem ON PoemEmotion.PoemId = Poem.Id
+JOIN Author ON Poem.AuthorId = Author.Id
+JOIN Gender ON Author.GenderId = Gender.Id
+GROUP BY Emotion.Name, Gender.Name
+HAVING Emotion.Name = 'Fear'
+ORDER BY COUNT(PoemEmotion.PoemId) ASC
